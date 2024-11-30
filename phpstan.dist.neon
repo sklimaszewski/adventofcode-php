@@ -1,0 +1,23 @@
+parameters:
+    level: max
+    phpVersion: 80400 # Specifies PHP 8.4
+    paths:
+        - src/
+    excludePaths:
+        - %currentWorkingDirectory%/vendor/*
+
+    # Analyze undefined variables in closures and other strict checks
+    checkMissingVarTagTypehint: true
+
+    # Bootstrap Symfony for autoloading classes
+    bootstrapFiles:
+        - vendor/autoload.php
+
+    # Treat code that uses @var annotations as specifying array and object shapes
+    treatPhpDocTypesAsCertain: true
+
+    # Add these strict rules for better type safety
+    reportUnmatchedIgnoredErrors: true
+    checkExplicitMixed: true
+    checkUnionTypes: true
+    checkMissingTypehints: true

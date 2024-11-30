@@ -1,0 +1,29 @@
+name: Code Quality
+on: [ push ]
+jobs:
+    analysis:
+        name: analysis
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   name: PHP setup
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: "8.4"
+                    coverage: none
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Composer dependencies
+                run: composer install
+
+            -   name: Coding style analysis with php-cs-fixer
+                run: vendor/bin/php-cs-fixer --config=./.php-cs-fixer.dist.php --dry-run --show-progress=dots --diff fix
+                env:
+                    PHP_CS_FIXER_IGNORE_ENV: 1
+
+            -   name: Static code analysis with phpstan
+                run: |
+                    vendor/bin/phpstan --version
+                    vendor/bin/phpstan --verbose --error-format=github

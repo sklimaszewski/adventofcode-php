@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use AdventOfCode\Command\SolveCommand;
+use Symfony\Component\Console\Application;
+
+require __DIR__ . '/vendor/autoload.php';
+
+/**
+ * Start the console application.
+ */
+$app = new Application('Advent of Code - PHP template', '1.0.0');
+
+$command = new SolveCommand();
+$app->add($command);
+$app->setDefaultCommand($command->getName());
+
+$app->run();
