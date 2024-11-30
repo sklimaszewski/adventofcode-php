@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Command;
 
+use AdventOfCode\Exception\NotImplementedException;
 use AdventOfCode\Solution\SolverInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Helper;
@@ -52,9 +53,6 @@ class SolveCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $stopwatch = new Stopwatch();
-        $stopwatch->start('solver');
-
         $day = $input->getArgument(self::ARGUMENT_DAY);
         if (!is_numeric($day)) {
             $output->writeln('<error>Day must be a number.</error>');
@@ -79,6 +77,8 @@ class SolveCommand extends Command
             return Command::FAILURE;
         }
 
+        $stopwatch = new Stopwatch();
+
         if ($input->getOption(self::OPTION_BENCHMARK)) {
             $output->writeln('<question>*****************************************************</question>');
             $output->writeln(sprintf('<question>*** Advent of Code - benchmarking day %02d solution ***</question>', $day));
@@ -92,10 +92,19 @@ class SolveCommand extends Command
             $progressBar->setFormat('very_verbose');
             $progressBar->start();
 
+            $stopwatch->start('solver');
+
             for ($i = 0; $i < self::BENCHMARK_ITERATIONS; ++$i) {
-                $stopwatch->start(sprintf('solver_%d', $i));
-                $solution->solve($inputFile);
-                $event = $stopwatch->stop(sprintf('solver_%d', $i));
+                $stopwatch->start(sprintf('solver-%d', $i));
+
+                $solution->solveFirstPart($inputFile);
+                try {
+                    $solution->solveSecondPart($inputFile);
+                } catch (NotImplementedException) {
+                    // Ignore exception
+                }
+
+                $event = $stopwatch->stop(sprintf('solver-%d', $i));
 
                 $totalTime += $event->getDuration();
                 $totalMemory += $event->getMemory();
@@ -120,15 +129,31 @@ class SolveCommand extends Command
             $output->writeln('<question>***************************************</question>');
             $output->writeln('');
 
-            $result = $solution->solve($inputFile);
+            $stopwatch->start('solver-first-part');
+            $result = $solution->solveFirstPart($inputFile);
+            $event = $stopwatch->stop('solver-first-part');
 
-            $output->writeln('<info>Result:</info>');
+            $output->writeln('<info>First part result:</info>');
             $output->writeln($result);
             $output->writeln('');
-
-            $event = $stopwatch->stop('solver');
             $output->writeln(sprintf('<comment>Time: %.2f ms</comment>', $event->getDuration()));
             $output->writeln(sprintf('<comment>Memory: %s</comment>', Helper::formatMemory($event->getMemory())));
+
+            try {
+                $output->writeln('');
+
+                $stopwatch->start('solver-second-part');
+                $result = $solution->solveSecondPart($inputFile);
+                $event = $stopwatch->stop('solver-second-part');
+
+                $output->writeln('<info>Second part result:</info>');
+                $output->writeln($result);
+                $output->writeln('');
+                $output->writeln(sprintf('<comment>Time: %.2f ms</comment>', $event->getDuration()));
+                $output->writeln(sprintf('<comment>Memory: %s</comment>', Helper::formatMemory($event->getMemory())));
+            } catch (NotImplementedException) {
+                // Ignore exception
+            }
         }
 
         return Command::SUCCESS;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Solution;
 
+use AdventOfCode\Exception\NotImplementedException;
 use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractSolver implements SolverInterface
@@ -13,8 +14,15 @@ abstract class AbstractSolver implements SolverInterface
     ) {
     }
 
+    public function solveSecondPart(string $inputFile): string
+    {
+        throw new NotImplementedException();
+    }
+
     /**
      * Generator function for reading input file line by line to reduce memory usage.
+     *
+     * @return iterable<string>
      */
     protected function readInputByLine(string $inputFile): iterable
     {
@@ -33,6 +41,11 @@ abstract class AbstractSolver implements SolverInterface
      */
     protected function readInput(string $inputFile): string
     {
-        return file_get_contents($inputFile);
+        $input = file_get_contents($inputFile);
+        if ($input === false) {
+            throw new \RuntimeException('Failed to read input file');
+        }
+
+        return $input;
     }
 }

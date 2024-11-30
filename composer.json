@@ -1,6 +1,6 @@
 {
   "require": {
-    "php": ">=8.4",
+    "php": ">=8.3",
     "symfony/console": "^7.2",
     "symfony/stopwatch": "^7.2"
   },
