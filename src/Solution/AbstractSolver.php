@@ -29,7 +29,7 @@ abstract class AbstractSolver implements SolverInterface
         $handle = fopen($inputFile, 'r');
         if ($handle) {
             while (($line = fgets($handle)) !== false) {
-                yield $line;
+                yield trim($line);
             }
 
             fclose($handle);
