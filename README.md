@@ -1,11 +1,14 @@
 # 🎄Advent of Code
 
+![AoC days](https://img.shields.io/github/commits-since/sklimaszewski/adventofcode-php/aoc-2024/main?label=%E2%AD%90%20AoC%202024%20Days&color=%23009900)
+![php v8.4](https://shields.io/badge/php-8.4-blue?logo=php)
+![build](https://img.shields.io/github/actions/workflow/status/sklimaszewski/adventofcode-php/code-quality.yaml)
+![license](https://img.shields.io/github/license/sklimaszewski/adventofcode-php)
+
 [Advent of Code](https://adventofcode.com/) is an annual event featuring daily programming puzzles designed for various
 skill levels. Created by Eric Wastl, the event runs every December, encouraging participants to solve challenges in
-their
-preferred programming language. It serves as a platform for learning, interview preparation, company training,
-coursework,
-or friendly competition.
+their preferred programming language. It serves as a platform for learning, interview preparation, company training,
+coursework, or friendly competition.
 
 # 💻 About
 
