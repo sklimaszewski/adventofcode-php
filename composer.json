@@ -13,10 +13,21 @@
     "phpstan/phpstan": "^2.0",
     "phpstan/phpstan-symfony": "^2.0",
     "friendsofphp/php-cs-fixer": "^3.65",
-    "symfony/var-dumper": "^7.2"
+    "symfony/var-dumper": "^7.2",
+    "brainmaestro/composer-git-hooks": "^3.0"
   },
   "scripts": {
+    "post-install-cmd": "cghooks add --ignore-lock",
+    "post-update-cmd": "cghooks update",
     "php-cs-fixer": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --config=./.php-cs-fixer.dist.php fix",
-    "phpstan": "vendor/bin/phpstan"
+    "phpstan": "vendor/bin/phpstan",
+    "cghooks": "vendor/bin/cghooks"
+  },
+  "extra": {
+    "hooks": {
+      "pre-commit": [
+        ".hooks/pre-commit"
+      ]
+    }
   }
 }

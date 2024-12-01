@@ -43,6 +43,8 @@ class Day01 extends AbstractSolver implements SolverInterface
 
     /**
      * Splits input data into two groups of integers.
+     *
+     * @return array{0: int[], 1: int[]}
      */
     private function prepareInputData(string $inputFile): array
     {
@@ -50,9 +52,9 @@ class Day01 extends AbstractSolver implements SolverInterface
         $secondGroup = [];
 
         foreach ($this->readInputByLine($inputFile) as $line) {
-            $locations = explode(' ', preg_replace('/\s+/', ' ', $line));
+            $locations = explode(' ', (string) preg_replace('/\s+/', ' ', $line));
 
-            $firstGroup[] = intval($locations[0] ?? 0);
+            $firstGroup[] = intval($locations[0]);
             $secondGroup[] = intval($locations[1] ?? 0);
         }
 
