@@ -48,4 +48,12 @@ abstract class AbstractSolver implements SolverInterface
 
         return $input;
     }
+
+    /**
+     * @return int[]
+     */
+    protected function parseIntValues(string $input, string $separator = ' '): array
+    {
+        return array_map('intval', explode($separator ?: ' ', $input));
+    }
 }
