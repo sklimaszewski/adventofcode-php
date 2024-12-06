@@ -35,14 +35,14 @@ To run the code, you need to have PHP 8.4 installed on your machine. You can run
 command:
 
 ```shell
-php aod solve <day>
+php aoc solve <day>
 ```
 
 Where `<day>` is the day of the challenge you want to run. For example, to run the solution for day 3, you would
 execute:
 
 ```shell
-php aod solve 3
+php aoc solve 3
 ```
 
 ## Benchmarking
@@ -50,7 +50,7 @@ php aod solve 3
 To benchmark the code, you need to pass `--benchmark` option to the command:
 
 ```shell
-php aod solve --benchmark 3
+php aoc solve --benchmark 3
 ```
 
 Benchmarking is done by executing the solution 1000 times and calculating the average execution time and memory usage.

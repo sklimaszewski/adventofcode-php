@@ -71,7 +71,7 @@ class Day05 extends AbstractSolver implements SolverInterface
                 if (!$valid) {
                     usort($values, fn ($a, $b) => $this->compare($a, $b, $map));
 
-                    $result += $values[ceil(count($values) / 2) - 1];
+                    $result += $values[(int) floor(count($values) / 2)];
                 }
             }
         }
