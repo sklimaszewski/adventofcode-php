@@ -2,7 +2,8 @@
   "require": {
     "php": ">=8.3",
     "symfony/console": "^7.2",
-    "symfony/stopwatch": "^7.2"
+    "symfony/stopwatch": "^7.2",
+    "ext-gmp": "*"
   },
   "autoload": {
     "psr-4": {
