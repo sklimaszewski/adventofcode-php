@@ -5,28 +5,9 @@ declare(strict_types=1);
 namespace AdventOfCode\Solution\Solver;
 
 use AdventOfCode\Solution\AbstractSolver;
+use AdventOfCode\Solution\Model\Day13\Button;
+use AdventOfCode\Solution\Model\Day13\Game;
 use AdventOfCode\Solution\SolverInterface;
-
-readonly class Button
-{
-    public function __construct(
-        public int $xMove,
-        public int $yMove,
-        public int $tokenCost,
-    ) {
-    }
-}
-
-readonly class Game
-{
-    public function __construct(
-        public Button $aButton,
-        public Button $bButton,
-        public int $prizeX,
-        public int $prizeY,
-    ) {
-    }
-}
 
 class Day13 extends AbstractSolver implements SolverInterface
 {

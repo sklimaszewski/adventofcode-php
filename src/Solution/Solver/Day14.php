@@ -5,18 +5,8 @@ declare(strict_types=1);
 namespace AdventOfCode\Solution\Solver;
 
 use AdventOfCode\Solution\AbstractSolver;
+use AdventOfCode\Solution\Model\Day14\Robot;
 use AdventOfCode\Solution\SolverInterface;
-
-class Robot
-{
-    public function __construct(
-        public int $x,
-        public int $y,
-        public readonly int $xMove,
-        public readonly int $yMove,
-    ) {
-    }
-}
 
 class Day14 extends AbstractSolver implements SolverInterface
 {
