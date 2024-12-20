@@ -212,8 +212,6 @@ class Map
                     continue;
                 }
 
-                echo 'Score: ' . $nextPosition->getScore() . PHP_EOL;
-
                 // Add the new position to the priority queue
                 $priorityQueue->insert(
                     $nextPosition,
