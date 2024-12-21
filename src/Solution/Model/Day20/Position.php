@@ -28,19 +28,6 @@ readonly class Position
         return $this->previousPosition->hasVisited($x, $y);
     }
 
-    public function hasCheated(): bool
-    {
-        if ($this->cheatSteps > 0) {
-            return true;
-        }
-
-        if ($this->previousPosition === null) {
-            return false;
-        }
-
-        return $this->previousPosition->hasCheated();
-    }
-
     /**
      * @param array<int, array{int, int}> $track
      *
