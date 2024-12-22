@@ -7,7 +7,7 @@ namespace AdventOfCode\Solution\Traits;
 trait Memo
 {
     /**
-     * @var array<string, array<string, mixed>>
+     * @var array<string, mixed>
      */
     private static array $memo;
 
@@ -28,6 +28,7 @@ trait Memo
             self::$memo[$key] = $callback();
         }
 
+        /** @var T */
         return self::$memo[$key];
     }
 }
