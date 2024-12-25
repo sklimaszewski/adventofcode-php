@@ -22,6 +22,6 @@ function __run() #(step, name, cmd)
     fi
 }
 
-__run "1/3" "PHP Lint" "git diff --diff-filter=M --name-only --cached  | grep \".php$\" | xargs -r php -l"
-__run "2/3" "PHP CS Fixer" "git diff --diff-filter=M --name-only --cached  | grep \".php$\" | PHP_CS_FIXER_IGNORE_ENV=1 xargs -r vendor/bin/php-cs-fixer check"
-__run "3/3" "PHPStan" "git diff --diff-filter=M --name-only --cached  | grep \".php$\" | xargs -r vendor/bin/phpstan analyse --memory-limit 1G"
+__run "1/3" "PHP Lint" "git diff --diff-filter=AM --name-only --cached  | grep \".php$\" | xargs -r php -l"
+__run "2/3" "PHP CS Fixer" "git diff --diff-filter=AM --name-only --cached  | grep \".php$\" | PHP_CS_FIXER_IGNORE_ENV=1 xargs -r vendor/bin/php-cs-fixer check --config=.php-cs-fixer.dist.php"
+__run "3/3" "PHPStan" "git diff --diff-filter=AM --name-only --cached  | grep \".php$\" | xargs -r vendor/bin/phpstan analyse --memory-limit 1G"
